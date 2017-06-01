@@ -1,0 +1,20 @@
+﻿<Application x:Class="ChaosChess.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ChaosChess"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <BitmapImage x:Key="Black Pawn">pack://application:,,,/Resources/Black Pawn.png</BitmapImage>
+        <BitmapImage x:Key="White Pawn">pack://application:,,,/Resources/White Pawn.png</BitmapImage>
+        <BitmapImage x:Key="Black Rook">pack://application:,,,/Resources/Black Rook.png</BitmapImage>
+        <BitmapImage x:Key="White Rook">pack://application:,,,/Resources/White Rook.png</BitmapImage>
+        <BitmapImage x:Key="Black Knight">pack://application:,,,/Resources/Black Knight.png</BitmapImage>
+        <BitmapImage x:Key="White Knight">pack://application:,,,/Resources/White Knight.png</BitmapImage>
+        <BitmapImage x:Key="Black Bishop">pack://application:,,,/Resources/Black Bishop.png</BitmapImage>
+        <BitmapImage x:Key="White Bishop">pack://application:,,,/Resources/White Bishop.png</BitmapImage>
+        <BitmapImage x:Key="Black Queen">pack://application:,,,/Resources/Black Queen.png</BitmapImage>
+        <BitmapImage x:Key="White Queen">pack://application:,,,/Resources/White Queen.png</BitmapImage>
+        <BitmapImage x:Key="Black King">pack://application:,,,/Resources/Black King.png</BitmapImage>
+        <BitmapImage x:Key="White King">pack://application:,,,/Resources/White King.png</BitmapImage>
+    </Application.Resources>
+</Application>
