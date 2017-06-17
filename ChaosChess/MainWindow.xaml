@@ -8,10 +8,17 @@
         Title="MainWindow" Height="650" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="619"/>
+            <ColumnDefinition Width="590"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Name="board" Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="590"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Play" Click="Start_Game"/>
+        </Menu>
+        <Grid Name="board" Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -33,5 +40,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
         </Grid>
+        <Button Click="Move">Move</Button>
     </Grid>
 </Window>

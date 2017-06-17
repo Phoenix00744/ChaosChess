@@ -1,4 +1,5 @@
-﻿using ChaosChess;
+﻿using Chaos_Chess;
+using ChaosChess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,38 @@ namespace Chaos_Chess
     /// </summary>
     public partial class MainWindow : Window
     {
+        Player primaryPlayer, opponent;
+        Communicator com;
+        Random selector;
         int boardDims;
+
         public MainWindow()
         {
             boardDims = 8;
 
             InitializeComponent();
 
+            selector = new Random();
+            primaryPlayer = selector.Next(2) == 0 ? new Player(true, true) : new Player(false, true);
+            opponent = primaryPlayer.isWhite ? new Player(false, false) : new Player(true, false);
+
+            com = new Communicator(primaryPlayer.isWhite);
+            com.MoveCommand += MovePiece;
+            com.Killing += PieceKilled;
+
             initialize_board();
             initialize_pieces();
+        }
+
+        private void PieceKilled(object sender, EventArgs e)
+        {
+            board.Children.Remove(com.dyingPiece);
+        }
+
+        private void MovePiece(object sender, EventArgs e)
+        {
+            board.Children.Remove(com.selectedPiece);
+            place_piece(com.movedPiece);
         }
 
         void initialize_board()
@@ -42,11 +66,11 @@ namespace Chaos_Chess
                 {
                     if ((i + j + 2) % 2 == 1)
                     {
-                        square = new Tile(false, new Point(i,j));
+                        square = new Tile(false, new Point(i, j), com);
                     }
                     else
                     {
-                        square = new Tile(true, new Point(i,j));
+                        square = new Tile(true, new Point(i, j), com);
                     }
 
                     place_rect(new Point(i, j), square);
@@ -56,27 +80,49 @@ namespace Chaos_Chess
 
         void initialize_pieces()
         {
-            Piece p = new Piece("Black Knight", new Point(2, 3));
-            place_piece(p);
+            List<Piece> allPieces = new List<Piece>();
+            allPieces.AddRange(primaryPlayer.Pawns);
+            allPieces.AddRange(primaryPlayer.MajorPieces);
+            allPieces.AddRange(opponent.Pawns);
+            allPieces.AddRange(opponent.MajorPieces);
+
+            foreach(Piece p in allPieces)
+            {
+                place_piece(p);
+                p.set_communicator(com);
+            }
+        }
+
+        void clear_pieces()
+        {
+            board.Children.Clear();
+            initialize_board();
         }
 
         void place_rect(Point loc, Tile obj)
         {
-            Grid.SetRow(obj, (int)loc.X);
-            Grid.SetColumn(obj, (int)loc.Y);
+            Grid.SetRow(obj, (int)loc.Y);
+            Grid.SetColumn(obj, (int)loc.X);
             board.Children.Add(obj);
         }
 
         void place_piece(Piece piece)
         {
-            Grid.SetRow(piece, (int)piece.Location.X);
-            Grid.SetColumn(piece, (int)piece.Location.Y);
+            Grid.SetRow(piece, (int)piece.Location.Y);
+            Grid.SetColumn(piece, (int)piece.Location.X);
             board.Children.Add(piece);
         }
 
-        public Image ImageFind(string name)
+        //For debugging
+        private void Move(object sender, RoutedEventArgs e)
         {
-            return new Image() { Source = (ImageSource)FindResource("White King") };
+
+        }
+
+        private void Start_Game(object sender, RoutedEventArgs e)
+        {
+            clear_pieces();
+            initialize_pieces();
         }
     }
 }

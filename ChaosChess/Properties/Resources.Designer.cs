@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ChaosChess.Properties {
+namespace Chaos_Chess.Properties {
     using System;
     
     

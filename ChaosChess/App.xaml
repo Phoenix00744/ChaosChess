@@ -1,7 +1,7 @@
-﻿<Application x:Class="ChaosChess.App"
+﻿<Application x:Class="Chaos_Chess.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ChaosChess"
+             xmlns:local="clr-namespace:Chaos_Chess"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="Black Pawn">pack://application:,,,/Resources/Black Pawn.png</BitmapImage>

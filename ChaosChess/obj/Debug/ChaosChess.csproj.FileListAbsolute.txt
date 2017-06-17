@@ -1,6 +1,5 @@
-C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\bin\Debug\ChaosChess.exe
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\bin\Debug\ChaosChess.exe.config
-C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\ChaosChess.csprojResolveAssemblyReference.cache
+C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\bin\Debug\ChaosChess.exe
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\MainWindow.g.cs
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\Piece.g.cs
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\Tile.g.cs
@@ -17,3 +16,4 @@ C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\D
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\ChaosChess.exe
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\ChaosChess.pdb
 C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\bin\Debug\ChaosChess.pdb
+C:\Users\Vikas\documents\visual studio 2015\Projects\ChaosChess\ChaosChess\obj\Debug\ChaosChess.csprojResolveAssemblyReference.cache

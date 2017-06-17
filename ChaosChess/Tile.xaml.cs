@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChaosChess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ChaosChess
+namespace Chaos_Chess
 {
     /// <summary>
     /// Interaction logic for Tile.xaml
     /// </summary>
     public partial class Tile : UserControl
     {
+        Communicator com;
         bool isWhite;
-        public Tile(bool white, Point loc)
+
+        public Tile(bool white, Point loc, Communicator c)
         {
+            com = c;
+
             InitializeComponent();
 
             isWhite = white;
@@ -39,5 +44,10 @@ namespace ChaosChess
         }
 
         public Point Location { get; private set; }
+
+        private void tile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            com.commandedMove = Location;
+        }
     }
 }
