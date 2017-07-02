@@ -15,14 +15,21 @@ namespace ChaosChess
         public event EventHandler Killing;
 
         Piece selPiece, newPiece, diePiece;
-        Point moveSelection;
-        bool isWhitePlayer;
+        Point moveSelection, movedFrom;
+        bool isWhitePlayer, isDone;
 
         public Communicator(bool playerColor)
         {
+            isDone = true;
+
             selPiece = null;
             moveSelection = new Point();
             isWhitePlayer = playerColor;
+        }
+
+        public bool IsDone
+        {
+            get { return isDone; }
         }
 
         public bool IsWhitePlayer
@@ -61,17 +68,17 @@ namespace ChaosChess
                         }
                         else
                         {
+                            isDone = false;
                             if (move_piece(value.Location, true))
                             {
                                 diePiece = value;
                                 Killing(this, new EventArgs());
-                                return;
                             }
                             else
                             {
                                 value.Background = new SolidColorBrush(Colors.Transparent);
-                                return;
                             }
+                            return;
                         }
                     }
                     else
@@ -92,6 +99,11 @@ namespace ChaosChess
             }
         }
 
+        public Point oldLocation
+        {
+            get { return movedFrom; }
+        }
+
         public bool readyToMove
         {
             get;
@@ -103,10 +115,12 @@ namespace ChaosChess
             if (readyToMove && move_rule_check(taking, moveValue))
             {
                 moveSelection = moveValue;
+                movedFrom = selectedPiece.Location;
                 newPiece = selectedPiece;
                 newPiece.Location = moveSelection;
                 newPiece.Background = new SolidColorBrush(Colors.Transparent);
 
+                isDone = taking ? false : true;
                 MoveCommand(this, new EventArgs());
 
                 readyToMove = false;

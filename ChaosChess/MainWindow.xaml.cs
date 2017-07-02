@@ -3,6 +3,7 @@ using ChaosChess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,14 +23,21 @@ namespace Chaos_Chess
     /// </summary>
     public partial class MainWindow : Window
     {
+        WebBrowser linker;
         Player primaryPlayer, opponent;
         Communicator com;
         Random selector;
         int boardDims;
+        string linkerURL, retrievalURL, moveString;
 
         public MainWindow()
         {
             boardDims = 8;
+
+            linker = new WebBrowser();
+            linkerURL = "http://data.sparkfun.com/input/OwZO6x8qv9SpGpqV7Ar6?private_key=82P5zXYVl0fJAJPB4yMZ&movestring=";
+            retrievalURL = "http://data.sparkfun.com/output/OwZO6x8qv9SpGpqV7Ar6.csv";
+            moveString = "";
 
             InitializeComponent();
 
@@ -52,8 +60,15 @@ namespace Chaos_Chess
 
         private void MovePiece(object sender, EventArgs e)
         {
+            string prefixChar = com.IsDone ? "M" : "T";
+
+            moveString = prefixChar + com.oldLocation.X.ToString() + com.oldLocation.Y.ToString()
+                + com.movedPiece.Location.X.ToString() + com.movedPiece.Location.Y.ToString();
+
             board.Children.Remove(com.selectedPiece);
             place_piece(com.movedPiece);
+
+            linker.Navigate(linkerURL + moveString);
         }
 
         void initialize_board()
@@ -116,7 +131,18 @@ namespace Chaos_Chess
         //For debugging
         private void Move(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.DownloadFile(retrievalURL, "C:\\Users\\Vikas\\Desktop\\Vikas's Apps\\deezNuts.csv");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("nope");
+            }
+            //MessageBox.Show(linker.Navigate(retrievalURL));
         }
 
         private void Start_Game(object sender, RoutedEventArgs e)

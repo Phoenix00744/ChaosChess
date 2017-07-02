@@ -26,7 +26,6 @@ namespace Chaos_Chess
     public partial class Piece : UserControl
     {
         Communicator com;
-        Point[] allowedMoves; 
 
         public Piece()
         {
